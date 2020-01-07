@@ -27,4 +27,12 @@ func TestRegisterUser(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	userExistMock = func(email string) bool {
+		return true
+	}
+	err = RegisterUser(user)
+	if err == nil {
+		t.Error("Expected Register User to throw and error got nil")
+	}
 }
