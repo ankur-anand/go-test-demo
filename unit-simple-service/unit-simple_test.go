@@ -5,9 +5,9 @@ import "testing"
 // This helps in assigning mock at the runtime instead of compile time
 var userExistMock func(email string) bool
 
-type userDBMock struct{}
+type preCheckMock struct{}
 
-func (u userDBMock) userExist(email string) bool {
+func (u preCheckMock) userExist(email string) bool {
 	return userExistMock(email)
 }
 
@@ -18,7 +18,7 @@ func TestRegisterUser(t *testing.T) {
 		UserName: "anand",
 	}
 
-	userDatabase = userDBMock{}
+	regPreCond = preCheckMock{}
 	userExistMock = func(email string) bool {
 		return false
 	}

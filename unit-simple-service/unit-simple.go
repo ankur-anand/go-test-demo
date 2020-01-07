@@ -16,27 +16,27 @@ type User struct {
 
 // Mock objects meet the interface requirements of,
 // and stand in for, more complex real ones
-type userDB interface {
+type registrationPreChecker interface {
 	userExist(string) bool
 }
 
-type uDB struct{}
+type regPreCheck struct{}
 
-func (u uDB) userExist(email string) bool {
+func (r regPreCheck) userExist(email string) bool {
 	return userdb.UserExist(email)
 }
 
-var userDatabase userDB
+var regPreCond registrationPreChecker
 
 func init() {
-	userDatabase = uDB{}
+	regPreCond = regPreCheck{}
 }
 
 // RegisterUser will register a User if only User has not been previously
 // registered.
 func RegisterUser(user User) error {
 	// check if user is already registered
-	found := userDatabase.userExist(user.Email)
+	found := regPreCond.userExist(user.Email)
 	if found {
 		return fmt.Errorf("email '%s' already registered", user.Email)
 	}
