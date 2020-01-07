@@ -1,4 +1,4 @@
-package unit_simple_service
+package unitservice
 
 import (
 	"fmt"

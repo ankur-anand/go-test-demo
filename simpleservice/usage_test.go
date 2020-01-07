@@ -1,4 +1,4 @@
-package simple_service
+package simpleservice
 
 import "testing"
 
