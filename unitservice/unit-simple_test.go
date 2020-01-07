@@ -3,12 +3,12 @@ package unitservice
 import "testing"
 
 // This helps in assigning mock at the runtime instead of compile time
-var userExistMock func(email string) bool
+var userExistsMock func(email string) bool
 
 type preCheckMock struct{}
 
 func (u preCheckMock) userExists(email string) bool {
-	return userExistMock(email)
+	return userExistsMock(email)
 }
 
 func TestRegisterUser(t *testing.T) {
@@ -19,7 +19,7 @@ func TestRegisterUser(t *testing.T) {
 	}
 
 	regPreCond = preCheckMock{}
-	userExistMock = func(email string) bool {
+	userExistsMock = func(email string) bool {
 		return false
 	}
 
@@ -28,7 +28,7 @@ func TestRegisterUser(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	userExistMock = func(email string) bool {
+	userExistsMock = func(email string) bool {
 		return true
 	}
 	err = RegisterUser(user)
