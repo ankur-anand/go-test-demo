@@ -18,7 +18,7 @@ type User struct {
 // registered.
 func RegisterUser(user User) error {
 	// check if user is already registered
-	found := userdb.UserExist(user.Email)
+	found := userdb.UserExists(user.Email)
 	if found {
 		return fmt.Errorf("email '%s' already registered", user.Email)
 	}

@@ -7,7 +7,7 @@ var userExistMock func(email string) bool
 
 type preCheckMock struct{}
 
-func (u preCheckMock) userExist(email string) bool {
+func (u preCheckMock) userExists(email string) bool {
 	return userExistMock(email)
 }
 

@@ -10,8 +10,8 @@ func init() {
 	db["anand@example.com"] = true
 }
 
-// UserExist check if the User is registered with the provided email.
-func UserExist(email string) bool {
+// UserExists check if the User is registered with the provided email.
+func UserExists(email string) bool {
 	if _, ok := db[email]; !ok {
 		return false
 	}
