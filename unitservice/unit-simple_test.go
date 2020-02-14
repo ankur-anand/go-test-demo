@@ -18,12 +18,12 @@ func TestRegisterUser(t *testing.T) {
 		UserName: "anand",
 	}
 
-	regPreCond = preCheckMock{}
+	regPreCond := preCheckMock{}
 	userExistsMock = func(email string) bool {
 		return false
 	}
 
-	err := RegisterUser(user)
+	err := RegisterUser(user, regPreCond)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -31,7 +31,7 @@ func TestRegisterUser(t *testing.T) {
 	userExistsMock = func(email string) bool {
 		return true
 	}
-	err = RegisterUser(user)
+	err = RegisterUser(user, regPreCond)
 	if err == nil {
 		t.Error("Expected Register User to throw and error got nil")
 	}
